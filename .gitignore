@@ -4,3 +4,5 @@ __pycache__
 env
 runtime
 .idea
+**/.ipynb_checkpoints
+TEMP

@@ -6,7 +6,7 @@ import torch
 sovits_path = ""
 gpt_path = ""
 is_half = eval(os.environ.get("is_half","True"))
-is_share=False
+is_share=True
 
 cnhubert_path = "GPT_SoVITS/pretrained_models/chinese-hubert-base"
 bert_path = "GPT_SoVITS/pretrained_models/chinese-roberta-wwm-ext-large"
