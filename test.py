@@ -132,17 +132,20 @@ def open1abc(inp_text,inp_wav_dir,exp_name,gpu_numbers1a,gpu_numbers1Ba,gpu_numb
         yield "已有正在进行的一键三连任务，需先终止才能开启下一次任务", {"__type__": "update", "visible": False}, {"__type__": "update", "visible": True}
 
 
-inp_text = "output/asr_opt/slicer_opt.list"
-inp_wav_dir = "output/slicer_opt"
-exp_name = "test" 
-gpu_numbers1a = "0-0"
-gpu_numbers1Ba = "0-0"
-gpu_numbers1c = "0-0"
-bert_pretrained_dir = "GPT_SoVITS/pretrained_models/chinese-roberta-wwm-ext-large"
-ssl_pretrained_dir = "GPT_SoVITS/pretrained_models/chinese-hubert-base"
-pretrained_s2G_path = "GPT_SoVITS/pretrained_models/s2G488k.pth"
+def try_open1abc():
+    inp_text = "output/asr_opt/slicer_opt.list"
+    inp_wav_dir = "output/slicer_opt"
+    exp_name = "test" 
+    gpu_numbers1a = "0-0"
+    gpu_numbers1Ba = "0-0"
+    gpu_numbers1c = "0-0"
+    bert_pretrained_dir = "GPT_SoVITS/pretrained_models/chinese-roberta-wwm-ext-large"
+    ssl_pretrained_dir = "GPT_SoVITS/pretrained_models/chinese-hubert-base"
+    pretrained_s2G_path = "GPT_SoVITS/pretrained_models/s2G488k.pth"
 
-for item in open1abc(inp_text,inp_wav_dir,exp_name,gpu_numbers1a,gpu_numbers1Ba,gpu_numbers1c,bert_pretrained_dir,ssl_pretrained_dir,pretrained_s2G_path):
-    if item:
-        print(item)
+    for item in open1abc(inp_text,inp_wav_dir,exp_name,gpu_numbers1a,gpu_numbers1Ba,gpu_numbers1c,bert_pretrained_dir,ssl_pretrained_dir,pretrained_s2G_path):
+        if item:
+            print(item)
 
+
+try_open1abc()
