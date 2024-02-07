@@ -301,6 +301,7 @@ def get_first(text):
 
 
 def get_tts_wav(ref_wav_path, prompt_text, prompt_language, text, text_language, how_to_cut=i18n("不切")):
+    print(ref_wav_path, prompt_text, prompt_language, text, text_language, how_to_cut)
     t0 = ttime()
     prompt_text = prompt_text.strip("\n")
     if (prompt_text[-1] not in splits): prompt_text += "。" if prompt_language != "en" else "."

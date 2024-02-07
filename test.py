@@ -216,7 +216,6 @@ def open1Bb(batch_size,total_epoch,exp_name,if_save_latest,if_save_every_weights
     else:
         yield "已有正在进行的GPT训练任务，需先终止才能开启下一次任务",{"__type__":"update","visible":False},{"__type__":"update","visible":True}
 
-
 def try_open1abc():
     inp_text = "output/asr_opt/slicer_opt.list"
     inp_wav_dir = "output/slicer_opt"
@@ -262,7 +261,34 @@ def try_open1Bb():
     for item in open1Bb(batch_size,total_epoch,exp_name,if_save_latest,if_save_every_weights,save_every_epoch,gpu_numbers,pretrained_s1):
         if item:
             print(item)
-    
-try_open1abc()
-try_open1Ba()
-try_open1Bb()
+
+
+
+# try_open1abc()
+# try_open1Ba()
+# try_open1Bb()
+
+import wave
+
+from GPT_SoVITS.inference_my import *
+gpt_path = "GPT_weights/test-e15.ckpt"
+sovits_path = "SoVITS_weights/test_e15_s300.pth"
+ref_wav_path = "/root/autodl-tmp/GPT-SoVITS/input_audio/myvoice_20240102_cut.m4a_1238720_1408960.wav"
+prompt_text = "融化在一起，整个身体慢慢变得透明了起来。"
+prompt_language = "Chinese"
+text = "近日，茶饮品牌茶颜悦色工商变更，企业类型变更并引入新股东，市场猜测是为赴港上市做准备。对此，茶颜悦色方面对此回应称，暂时没有明确的上市计划。对于茶颜悦色的这系列变更，一家关注消费行业的投资机构分析师表示，股权变更可能是在为上市做准备，但并不代表最后能上市，是上市的必要不充分条件。但是股权变更也可能是其他情况，比如架构重组，开展新业务，引入新股东。（红星新闻）"
+text_language = "Chinese"
+how_to_cut = "按标点符号切"
+result = get_tts_wav_by_params(gpt_path, sovits_path, ref_wav_path, prompt_text, prompt_language, text, text_language, how_to_cut = how_to_cut)
+# (gpt_path_input, sovits_path_input, ref_wav_path, prompt_text, prompt_language, text, text_language, how_to_cut=i18n("不切")):
+
+sample_rate = result[0][0]
+data = result[0][1]
+     
+with wave.open("sound1.wav", "w") as f:
+    # 2 Channels.
+    f.setnchannels(1)
+    # 2 bytes per sample.
+    f.setsampwidth(2)
+    f.setframerate(sample_rate)
+    f.writeframes(data.tobytes())
