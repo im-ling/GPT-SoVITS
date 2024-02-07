@@ -264,9 +264,9 @@ def try_open1Bb():
 
 
 
-# try_open1abc()
-# try_open1Ba()
-# try_open1Bb()
+try_open1abc()
+try_open1Ba()
+try_open1Bb()
 
 import wave
 
